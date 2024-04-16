@@ -1,0 +1,46 @@
+@import '../../styles/utils';
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 16px;
+
+  &__part {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__home {
+    display: flex;
+    align-items: center;
+  }
+
+  &__arrow {
+    opacity: 0.5;
+  }
+
+  &__path {
+    height: 100%;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: $c-primary;
+    transition: all 0.3s;
+    text-align: center;
+    padding-top: 2px;
+
+    &:hover {
+      color: $c-secondary;
+    }
+
+    &--active {
+      color: $c-secondary;
+
+      &:hover {
+        color: $c-primary;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@import '../../styles/utils';
+
+.phones {
+  width: 100%;
+  padding-top: 24px;
+
+  &__count {
+    @extend %small-text;
+    
+    color: $c-secondary;
+    margin-bottom: 40px;
+  }
+
+  &__breadcrumbs {
+    margin-bottom: 40px;
+  }
+}
