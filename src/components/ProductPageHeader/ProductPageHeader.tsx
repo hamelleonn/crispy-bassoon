@@ -4,12 +4,10 @@ import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { ButtonBack } from '../Button/Button';
 
 type Props = {
-  productName: string,
+  productName: string;
 };
 
-export const ProductPageHeader: React.FC<Props> = ({
-  productName,
-}) => {
+export const ProductPageHeader: React.FC<Props> = ({ productName }) => {
   return (
     <>
       <div className="product__breadcrumbs">
@@ -18,9 +16,7 @@ export const ProductPageHeader: React.FC<Props> = ({
 
       <ButtonBack />
 
-      <h1 className="product__title">
-        {productName}
-      </h1>
+      <h1 className="product__title">{productName}</h1>
     </>
   );
 };

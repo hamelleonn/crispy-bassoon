@@ -7,23 +7,20 @@ import { ProductItem } from '../ProductItem/ProductItem';
 import { Button } from '../Button/Button';
 
 type Props = {
-  products: Product[]
-  title: string,
+  products: Product[];
+  title: string;
 };
 
-export const ProductsList: React.FC<Props> = ({
-  products,
-  title,
-}) => {
+export const ProductsList: React.FC<Props> = ({ products, title }) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [itemsPerPage] = useState(4);
   const [page, setPage] = useState(0);
   const [wrapperWidth, setWrapperWidth] = useState(0);
 
   const itemWidth = 270;
-  const gap = (wrapperWidth - (itemWidth * itemsPerPage)) / (itemsPerPage - 1);
+  const gap = (wrapperWidth - itemWidth * itemsPerPage) / (itemsPerPage - 1);
   const offset = -(page * ((itemWidth + gap) * itemsPerPage));
-  const lastPage = Math.round((products.length / itemsPerPage) - 1);
+  const lastPage = Math.round(products.length / itemsPerPage - 1);
 
   useEffect(() => {
     if (wrapperRef.current) {
@@ -32,14 +29,9 @@ export const ProductsList: React.FC<Props> = ({
   }, []);
 
   return (
-    <div
-      className="products__list"
-      data-cy="productList"
-    >
+    <div className="products__list" data-cy="productList">
       <div className="products__list-top">
-        <h1 className="section__title">
-          {title}
-        </h1>
+        <h1 className="section__title">{title}</h1>
 
         <div className="products__list-nav">
           <Button
@@ -60,10 +52,7 @@ export const ProductsList: React.FC<Props> = ({
         </div>
       </div>
 
-      <div
-        className="products__list-wrapper"
-        ref={wrapperRef}
-      >
+      <div className="products__list-wrapper" ref={wrapperRef}>
         <div
           className="products__list-items"
           style={{
@@ -73,10 +62,7 @@ export const ProductsList: React.FC<Props> = ({
           data-cy="cardsContainer"
         >
           {products.map((product: Product) => (
-            <ProductItem
-              key={getId()}
-              product={product}
-            />
+            <ProductItem key={getId()} product={product} />
           ))}
         </div>
       </div>

@@ -5,19 +5,15 @@ import { ProductItem } from '../ProductItem/ProductItem';
 import { Product } from '../../types/Product';
 
 type Props = {
-  products: Product[],
+  products: Product[];
 };
 
-export const PhonesList: React.FC<Props> = ({
-  products,
-}) => {
+export const PhonesList: React.FC<Props> = ({ products }) => {
   return (
     <div className="pagination__list">
       {products.map(phone => (
         <Fragment key={getId()}>
-          <ProductItem
-            product={phone}
-          />
+          <ProductItem product={phone} />
         </Fragment>
       ))}
     </div>

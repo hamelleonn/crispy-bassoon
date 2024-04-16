@@ -10,9 +10,7 @@ export const Accessories: React.FC = () => {
         <Breadcrumbs />
       </div>
 
-      <h1 className="content__title">
-        Not implemented yet
-      </h1>
+      <h1 className="content__title">Not implemented yet</h1>
     </div>
   );
 };

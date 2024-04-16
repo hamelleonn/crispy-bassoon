@@ -9,17 +9,15 @@ import { usePhones } from '../../hooks/usePhones';
 import { getSearchWith } from '../../utils/getSearchWith';
 import { Params } from '../../types/Params';
 
-const getNavClass = ({ isActive }: { isActive: boolean }) => (cn('nav__link', {
-  'nav__link--active': isActive,
-}));
+const getNavClass = ({ isActive }: { isActive: boolean }) =>
+  cn('nav__link', {
+    'nav__link--active': isActive,
+  });
 
-const getIconClass = ({ isActive }: { isActive: boolean }) => (cn(
-  'header__icon',
-  'icon',
-  {
+const getIconClass = ({ isActive }: { isActive: boolean }) =>
+  cn('header__icon', 'icon', {
     'icon--active': isActive,
-  },
-));
+  });
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -49,10 +47,7 @@ export const Header: React.FC = () => {
     setSearchWith({ tabletSearchValue: target.value || null });
   };
 
-  const {
-    favoritesIds,
-    cartProducts,
-  } = usePhones();
+  const { favoritesIds, cartProducts } = usePhones();
 
   return (
     <header className="header">
@@ -97,10 +92,7 @@ export const Header: React.FC = () => {
           />
         )}
 
-        <NavLink
-          to="/favorites"
-          className={getIconClass}
-        >
+        <NavLink to="/favorites" className={getIconClass}>
           <img
             className="icon__img"
             src="img/icons/heart.svg"
@@ -108,26 +100,15 @@ export const Header: React.FC = () => {
           />
 
           {!!favoritesIds.length && (
-            <div className="icon__count">
-              {favoritesIds.length}
-            </div>
+            <div className="icon__count">{favoritesIds.length}</div>
           )}
         </NavLink>
 
-        <NavLink
-          to="/cart"
-          className={getIconClass}
-        >
-          <img
-            className="icon__img"
-            src="img/icons/cart.svg"
-            alt="Icon Card"
-          />
+        <NavLink to="/cart" className={getIconClass}>
+          <img className="icon__img" src="img/icons/cart.svg" alt="Icon Card" />
 
           {!!cartProducts.length && (
-            <div className="icon__count">
-              {cartProducts.length}
-            </div>
+            <div className="icon__count">{cartProducts.length}</div>
           )}
         </NavLink>
       </div>

@@ -49,9 +49,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="footer__back-to-top">
-          <p className="footer__text">
-            Back to top
-          </p>
+          <p className="footer__text">Back to top</p>
 
           <Button
             className="button button--small button__nav"

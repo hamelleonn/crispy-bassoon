@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { v4 as getId } from 'uuid';
@@ -8,9 +8,9 @@ import './Breadcrumbs.scss';
 
 export const Breadcrumbs: React.FC = () => {
   const location = useLocation();
-  const currentLocation = location.pathname.split('/').filter(path => (
-    path !== ''
-  ));
+  const currentLocation = location.pathname
+    .split('/')
+    .filter(path => path !== '');
 
   let localPath = '';
 
@@ -21,9 +21,10 @@ export const Breadcrumbs: React.FC = () => {
       </Link>
 
       {currentLocation.map(path => {
-        const newPath = path.split('-').map(p => (
-          p.charAt(0).toUpperCase() + p.slice(1)
-        )).join(' ');
+        const newPath = path
+          .split('-')
+          .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+          .join(' ');
 
         localPath += `/${path}`;
 
@@ -37,12 +38,9 @@ export const Breadcrumbs: React.FC = () => {
 
             <Link
               to={localPath}
-              className={cn(
-                'breadcrumbs__path',
-                {
-                  'breadcrumbs__path--active': localPath === location.pathname,
-                },
-              )}
+              className={cn('breadcrumbs__path', {
+                'breadcrumbs__path--active': localPath === location.pathname,
+              })}
             >
               {newPath}
             </Link>

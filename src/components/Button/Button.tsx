@@ -4,16 +4,16 @@ import './Button.scss';
 import { useNavigate } from 'react-router';
 
 type Props = {
-  children?: React.ReactNode,
-  className: string,
-  onClick?: () => void,
-  disabled?: boolean,
+  children?: React.ReactNode;
+  className: string;
+  onClick?: () => void;
+  disabled?: boolean;
 };
 
 export const Button: React.FC<Props> = ({
   className = 'button',
   children,
-  onClick = () => { },
+  onClick = () => {},
   disabled = false,
 }) => {
   return (
@@ -39,9 +39,7 @@ export const ButtonBack: React.FC = () => {
     >
       <img src="img/icons/arrow-left.svg" alt="Arrow Left" />
 
-      <p>
-        Back
-      </p>
+      <p>Back</p>
     </Button>
   );
 };

@@ -5,10 +5,10 @@ import { v4 as getId } from 'uuid';
 import './Pagination.scss';
 
 type Props = {
-  productsLength: number
-  itemsPerPage: number,
-  currentPage: number,
-  setCurrentPage: Dispatch<SetStateAction<number>>,
+  productsLength: number;
+  itemsPerPage: number;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 };
 
 export const Pagination: React.FC<Props> = ({
@@ -59,14 +59,9 @@ export const Pagination: React.FC<Props> = ({
           <button
             key={getId()}
             type="button"
-            className={cn(
-              'button',
-              'button__nav',
-              'button--small',
-              {
-                'button__nav--active': currentPage === page,
-              },
-            )}
+            className={cn('button', 'button__nav', 'button--small', {
+              'button__nav--active': currentPage === page,
+            })}
             onClick={() => setCurrentPage(page)}
           >
             {page}

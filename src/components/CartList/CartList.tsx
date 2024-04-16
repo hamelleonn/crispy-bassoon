@@ -5,22 +5,15 @@ import { CartItem } from '../CartItem/CartItem';
 import { Product } from '../../types/Product';
 
 type Props = {
-  cartItems: Product[],
+  cartItems: Product[];
 };
 
-export const CartList: React.FC<Props> = ({
-  cartItems,
-}) => {
+export const CartList: React.FC<Props> = ({ cartItems }) => {
   return (
     <div className="cart__list">
-      {
-        cartItems.map(item => (
-          <CartItem
-            key={getId()}
-            item={item}
-          />
-        ))
-      }
+      {cartItems.map(item => (
+        <CartItem key={getId()} item={item} />
+      ))}
     </div>
   );
 };

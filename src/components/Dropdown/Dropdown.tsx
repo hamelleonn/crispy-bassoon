@@ -10,12 +10,12 @@ import { getSearchWith } from '../../utils/getSearchWith';
 import { Params } from '../../types/Params';
 
 type Props = {
-  sortParams?: SortParamsType[],
-  perPageParams?: number[],
-  title: string,
-  isItemsPerPage?: boolean,
-  setCurrentPage?: Dispatch<SetStateAction<number>>,
-  isSmall?: boolean,
+  sortParams?: SortParamsType[];
+  perPageParams?: number[];
+  title: string;
+  isItemsPerPage?: boolean;
+  setCurrentPage?: Dispatch<SetStateAction<number>>;
+  isSmall?: boolean;
 };
 
 const optionHeight = 32;
@@ -55,16 +55,11 @@ export const Dropdown: React.FC<Props> = ({
 
   return (
     <div
-      className={cn(
-        'dropdown',
-        {
-          'dropdown--small': isSmall,
-        },
-      )}
+      className={cn('dropdown', {
+        'dropdown--small': isSmall,
+      })}
     >
-      <p className="dropdown__label">
-        {title}
-      </p>
+      <p className="dropdown__label">{title}</p>
 
       <button
         type="button"
@@ -72,12 +67,9 @@ export const Dropdown: React.FC<Props> = ({
         onClick={() => setIsDropdownActive(!isDropdownActive)}
       >
         <img
-          className={cn(
-            'dropdown__arrow',
-            {
-              'dropdown__arrow--active': isDropdownActive,
-            },
-          )}
+          className={cn('dropdown__arrow', {
+            'dropdown__arrow--active': isDropdownActive,
+          })}
           src="img/icons/arrow-down.svg"
           alt="Arrow down"
         />
@@ -86,48 +78,41 @@ export const Dropdown: React.FC<Props> = ({
       </button>
 
       <div
-        className={cn(
-          'dropdown__select-area',
-          {
-            'dropdown__select-area--active': isDropdownActive,
-          },
-        )}
+        className={cn('dropdown__select-area', {
+          'dropdown__select-area--active': isDropdownActive,
+        })}
         style={{
           height: isDropdownActive
-            ? `${(optionHeight * ((sortParams?.length || perPageParams?.length) || 0)) + 16}px`
+            ? `${optionHeight * (sortParams?.length || perPageParams?.length || 0) + 16}px`
             : 0,
         }}
       >
-        {sortParams && sortParams.map(({ type, value }: SortParamsType) => (
-          <option
-            key={getId()}
-            value={value}
-            className={cn(
-              'dropdown__option',
-              {
+        {sortParams &&
+          sortParams.map(({ type, value }: SortParamsType) => (
+            <option
+              key={getId()}
+              value={value}
+              className={cn('dropdown__option', {
                 'dropdown__option--active': sortType === type,
-              },
-            )}
-            onClick={() => handleSortTypeChange(type)}
-          >
-            {type}
-          </option>
-        ))}
+              })}
+              onClick={() => handleSortTypeChange(type)}
+            >
+              {type}
+            </option>
+          ))}
 
-        {perPageParams && perPageParams.map(perPage => (
-          <option
-            key={getId()}
-            className={cn(
-              'dropdown__option',
-              {
+        {perPageParams &&
+          perPageParams.map(perPage => (
+            <option
+              key={getId()}
+              className={cn('dropdown__option', {
                 'dropdown__option--active': perPage === itemsPerPage,
-              },
-            )}
-            onClick={() => handlePerPageChange(perPage)}
-          >
-            {perPage}
-          </option>
-        ))}
+              })}
+              onClick={() => handlePerPageChange(perPage)}
+            >
+              {perPage}
+            </option>
+          ))}
       </div>
     </div>
   );

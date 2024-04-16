@@ -8,18 +8,12 @@ import { Button } from '../Button/Button';
 import { usePhones } from '../../hooks/usePhones';
 
 type Props = {
-  product: Product
+  product: Product;
 };
 
-export const ProductItem: React.FC<Props> = ({
-  product,
-}) => {
-  const {
-    favoritesIds,
-    cartProducts,
-    handleOnCartAdd,
-    handleOnLikeClick,
-  } = usePhones();
+export const ProductItem: React.FC<Props> = ({ product }) => {
+  const { favoritesIds, cartProducts, handleOnCartAdd, handleOnLikeClick } =
+    usePhones();
 
   const {
     itemId,
@@ -43,67 +37,43 @@ export const ProductItem: React.FC<Props> = ({
         </div>
       </Link>
 
-      <Link
-        to={`/phones/${phoneId}`}
-        className="product-item__title body-text"
-      >
+      <Link to={`/phones/${phoneId}`} className="product-item__title body-text">
         {name}
       </Link>
 
       <div className="product-item__price-section">
-        <h2 className="price">
-          {`$${price}`}
-        </h2>
+        <h2 className="price">{`$${price}`}</h2>
 
-        <p className="price-discount">
-          {`$${fullPrice}`}
-        </p>
+        <p className="price-discount">{`$${fullPrice}`}</p>
       </div>
 
       <hr className="product-item__line" />
 
       <div className="product-item__descr">
         <div className="product-item__descr-wrapper">
-          <p className="product-item__descr-name">
-            Screen
-          </p>
+          <p className="product-item__descr-name">Screen</p>
 
-          <p className="product-item__descr-value">
-            {screen}
-          </p>
+          <p className="product-item__descr-value">{screen}</p>
         </div>
 
         <div className="product-item__descr-wrapper">
-          <p className="product-item__descr-name">
-            Capacity
-          </p>
+          <p className="product-item__descr-name">Capacity</p>
 
-          <p className="product-item__descr-value">
-            {capacity}
-          </p>
+          <p className="product-item__descr-value">{capacity}</p>
         </div>
 
         <div className="product-item__descr-wrapper">
-          <p className="product-item__descr-name">
-            RAM
-          </p>
+          <p className="product-item__descr-name">RAM</p>
 
-          <p className="product-item__descr-value">
-            {ram}
-          </p>
+          <p className="product-item__descr-value">{ram}</p>
         </div>
       </div>
 
       <div className="product-item__btns">
         <Button
-          className={cn(
-            'button',
-            'button__primary',
-            'button--large',
-            {
-              button__selected: isCartItem,
-            },
-          )}
+          className={cn('button', 'button__primary', 'button--large', {
+            button__selected: isCartItem,
+          })}
           onClick={() => handleOnCartAdd(itemId)}
         >
           {isCartItem ? 'Added to cart' : 'Add to card'}
@@ -117,15 +87,11 @@ export const ProductItem: React.FC<Props> = ({
           "
           onClick={() => handleOnLikeClick(itemId)}
         >
-          {
-            favoritesIds?.includes(itemId)
-              ? (
-                <img src="img/icons/heart-active.svg" alt="Heart" />
-              )
-              : (
-                <img src="img/icons/heart.svg" alt="Heart" />
-              )
-          }
+          {favoritesIds?.includes(itemId) ? (
+            <img src="img/icons/heart-active.svg" alt="Heart" />
+          ) : (
+            <img src="img/icons/heart.svg" alt="Heart" />
+          )}
         </Button>
       </div>
     </div>
