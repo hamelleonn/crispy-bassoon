@@ -3,7 +3,7 @@
 ## Project Overview
 The React Phone Shop is a modern e-commerce application built to demonstrate a functional online store for mobile devices. The application features a responsive design, uses React for its front-end, and manages state and routing efficiently to simulate a real-world shopping experience.
 
-- [DEMO LINK](https://hyper2307.github.io/react_phone-page/)
+- [DEMO LINK](https://hyper2307.github.io/react_phone-catalog/)
 
 ### Technologies Used
 - **JSX**: Used to write React components with HTML-like syntax within JavaScript.
