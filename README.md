@@ -1,9 +1,12 @@
-# React TypeScript Starter Pack
+- [DEMO LINK](https://hyper2307.github.io/react_phone-catalog/)
 
-To use this template click `Use this template`
+This phone page was written to improve knowlage about react.
 
-### Available Scripts
-
-`Deploy` - available to deploy your application to gh-pages
-
-`SCSS Preprocessor` - available to write your styles with modern style language
+Technologies: 
+  1. JSX
+  2. SCSS
+  3. BEM
+  4. REACT
+  5. REACT ROUTER
+  6. LOCAL STORAGE
+  7. QUERY PARAMS
