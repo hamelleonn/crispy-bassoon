@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
 
         <div className="footer__info">
           <a
-            href="https://github.com/HYPER2307/react_phone-catalog/tree/dev"
+            href="https://github.com/HYPER2307/phone-catalog"
             target="_blank"
             rel="noreferrer"
             className="footer__item"
@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
           </a>
 
           <a
-            href="https://github.com/HYPER2307/react_phone-catalog/tree/dev"
+            href="https://github.com/HYPER2307/phone-catalog"
             target="_blank"
             rel="noreferrer"
             className="footer__item"
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
           </a>
 
           <a
-            href="https://github.com/HYPER2307/react_phone-catalog/tree/dev"
+            href="https://github.com/HYPER2307/phone-catalog"
             target="_blank"
             rel="noreferrer"
             className="footer__item"
