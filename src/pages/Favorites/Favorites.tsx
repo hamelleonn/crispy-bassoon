@@ -15,8 +15,7 @@ export const Favorites: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    client
-      .get<Product[]>('products.json')
+    client.get<Product[]>('products.json')
       .then(setProducts)
       .finally(() => setIsLoading(false));
   }, [setProducts]);
@@ -36,22 +35,29 @@ export const Favorites: React.FC = () => {
           </div>
 
           {!favoritesIds.length && (
-            <h1 className="content__title">No products in favorites</h1>
+            <h1 className="content__title">
+              No products in favorites
+            </h1>
           )}
 
           {!!favoritesIds.length && (
             <>
-              <h1 className="content__title">Favorites</h1>
+              <h1 className="content__title">
+                Favorites
+              </h1>
 
               <p className="favorites__items-count">
                 {`${favoritesIds.length} items`}
               </p>
 
-              <FavoritesList favoriteProducts={favoritesProducts} />
+              <FavoritesList
+                favoriteProducts={favoritesProducts}
+              />
             </>
           )}
         </>
       )}
+
     </section>
   );
 };

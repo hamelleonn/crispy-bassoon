@@ -5,13 +5,17 @@ import './Categories.scss';
 import { Product } from '../../types/Product';
 
 type Props = {
-  products: Product[];
+  products: Product[]
 };
 
-export const Categories: React.FC<Props> = ({ products }) => {
+export const Categories: React.FC<Props> = ({
+  products,
+}) => {
   return (
     <>
-      <h1 className="section__title categories__title">Shop by category</h1>
+      <h1 className="section__title categories__title">
+        Shop by category
+      </h1>
 
       <div className="categories__list">
         <div className="categories__item">
@@ -26,10 +30,14 @@ export const Categories: React.FC<Props> = ({ products }) => {
           </Link>
 
           <Link to="/phones" className="categories__subtitle-link">
-            <h3 className="categories__subtitle">Mobile phones</h3>
+            <h3 className="categories__subtitle">
+              Mobile phones
+            </h3>
           </Link>
 
-          <p className="categories__count">{`${products?.length} models`}</p>
+          <p className="categories__count">
+            {`${products?.length} models`}
+          </p>
         </div>
 
         <div className="categories__item">
@@ -44,10 +52,14 @@ export const Categories: React.FC<Props> = ({ products }) => {
           </Link>
 
           <Link to="/tablets" className="categories__subtitle-link">
-            <h3 className="categories__subtitle">Tablets</h3>
+            <h3 className="categories__subtitle">
+              Tablets
+            </h3>
           </Link>
 
-          <p className="categories__count">0 models</p>
+          <p className="categories__count">
+            0 models
+          </p>
         </div>
 
         <div className="categories__item">
@@ -62,10 +74,14 @@ export const Categories: React.FC<Props> = ({ products }) => {
           </Link>
 
           <Link to="/accessories" className="categories__subtitle-link">
-            <h3 className="categories__subtitle">Accessories</h3>
+            <h3 className="categories__subtitle">
+              Accessories
+            </h3>
           </Link>
 
-          <p className="categories__count">0 models</p>
+          <p className="categories__count">
+            0 models
+          </p>
         </div>
       </div>
     </>

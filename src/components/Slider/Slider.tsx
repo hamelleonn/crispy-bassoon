@@ -1,4 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { v4 as getId } from 'uuid';
 import cn from 'classnames';
 
@@ -7,12 +11,16 @@ import { Banner } from '../../types/Banner';
 import { Button } from '../Button/Button';
 
 type Props = {
-  interval: number;
-  slidesCount: number;
-  banners: Banner[];
+  interval: number,
+  slidesCount: number,
+  banners: Banner[]
 };
 
-export const Slider: React.FC<Props> = ({ interval, slidesCount, banners }) => {
+export const Slider: React.FC<Props> = ({
+  interval,
+  slidesCount,
+  banners,
+}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideWidth, setSlideWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,9 +51,9 @@ export const Slider: React.FC<Props> = ({ interval, slidesCount, banners }) => {
     setSlideWidth(containerRef.current?.offsetWidth || 0);
 
     setInterval(() => {
-      setCurrentSlide(current =>
-        current >= slidesCount - 1 ? 0 : current + 1,
-      );
+      setCurrentSlide(current => (
+        current >= slidesCount - 1 ? 0 : current + 1
+      ));
     }, interval);
   }, [interval, slidesCount]);
 
@@ -58,15 +66,26 @@ export const Slider: React.FC<Props> = ({ interval, slidesCount, banners }) => {
             transform: `translateX(${offset}px)`,
           }}
         >
-          {banners.map(({ img }) => (
-            <div className="slider-slide" key={getId()}>
-              <img src={img} alt="Banner accessories" />
-            </div>
-          ))}
+          {
+            banners.map(({ img }) => (
+              <div
+                className="slider-slide"
+                key={getId()}
+              >
+                <img
+                  src={img}
+                  alt="Banner accessories"
+                />
+              </div>
+            ))
+          }
         </div>
       </div>
 
-      <Button className="slider-btn slider-btn-prev" onClick={handleSlideLeft}>
+      <Button
+        className="slider-btn slider-btn-prev"
+        onClick={handleSlideLeft}
+      >
         <img
           className="slider-btn__arrow"
           src="img/icons/arrow-left.svg"
@@ -74,7 +93,10 @@ export const Slider: React.FC<Props> = ({ interval, slidesCount, banners }) => {
         />
       </Button>
 
-      <Button className="slider-btn slider-btn-next" onClick={handleSlideRight}>
+      <Button
+        className="slider-btn slider-btn-next"
+        onClick={handleSlideRight}
+      >
         <img
           className="slider-btn__arrow"
           src="img/icons/arrow-right.svg"
@@ -83,14 +105,19 @@ export const Slider: React.FC<Props> = ({ interval, slidesCount, banners }) => {
       </Button>
 
       <div className="slider-dots">
-        {banners.map(({ id }) => (
-          <div
-            className={cn('slider-dot', {
-              'slider-dot--active': currentSlide === id,
-            })}
-            key={getId()}
-          />
-        ))}
+        {
+          banners.map(({ id }) => (
+            <div
+              className={cn(
+                'slider-dot',
+                {
+                  'slider-dot--active': currentSlide === id,
+                },
+              )}
+              key={getId()}
+            />
+          ))
+        }
       </div>
     </div>
   );

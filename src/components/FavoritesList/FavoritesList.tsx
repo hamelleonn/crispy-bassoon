@@ -5,14 +5,19 @@ import { Product } from '../../types/Product';
 import { ProductItem } from '../ProductItem/ProductItem';
 
 type Props = {
-  favoriteProducts: Product[];
+  favoriteProducts: Product[],
 };
 
-export const FavoritesList: React.FC<Props> = ({ favoriteProducts }) => {
+export const FavoritesList: React.FC<Props> = ({
+  favoriteProducts,
+}) => {
   return (
     <div className="favorites__products-list">
       {favoriteProducts.map(product => (
-        <ProductItem key={getId()} product={product} />
+        <ProductItem
+          key={getId()}
+          product={product}
+        />
       ))}
     </div>
   );

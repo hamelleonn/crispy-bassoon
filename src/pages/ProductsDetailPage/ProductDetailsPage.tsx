@@ -6,10 +6,12 @@ import { client } from '../../client/httpClient';
 import { ProductPage } from '../../types/ProductPage';
 import { Loader } from '../../components/Loader/Loader';
 import { ProductOrder } from '../../components/ProductOrder/ProductOrder';
-// eslint-disable-next-line max-len
-import { ProductPageHeader } from '../../components/ProductPageHeader/ProductPageHeader';
-// eslint-disable-next-line max-len
-import { ProductPagePhotos } from '../../components/ProductPagePhotos/ProductPagePhotos';
+import {
+  ProductPageHeader,
+} from '../../components/ProductPageHeader/ProductPageHeader';
+import {
+  ProductPagePhotos,
+} from '../../components/ProductPagePhotos/ProductPagePhotos';
 import { ProductAbout } from '../../components/ProductAbout/ProductAbout';
 import { ProductSpecs } from '../../components/ProductSpecs/ProductSpecs';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
@@ -23,17 +25,27 @@ export const ProductDetailsPage: React.FC = () => {
   const productIdCapacity = productIdParts[productIdParts.length - 2];
   const navigate = useNavigate();
 
-  const { products, setProducts } = usePhones();
+  const {
+    products,
+    setProducts,
+  } = usePhones();
 
-  const [productData, setProductData] = useState<ProductPage>(
-    {} as ProductPage,
-  );
+  const [
+    productData,
+    setProductData,
+  ] = useState<ProductPage>({} as ProductPage);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [currentPhoto, setCurrentPhoto] = useState<string>('');
+  const [
+    currentPhoto,
+    setCurrentPhoto,
+  ] = useState<string>('');
 
-  const getPreparedLink = (color: string, capacity: string) => {
+  const getPreparedLink = (
+    color: string,
+    capacity: string,
+  ) => {
     const preparedProductId = productId
       ?.replace(productIdColor, color)
       .replace(productIdCapacity, capacity.toLowerCase());
@@ -70,12 +82,10 @@ export const ProductDetailsPage: React.FC = () => {
   } = productData as ProductPage;
 
   const getSuggestedProducts = (productsList: Product[]): Product[] => {
-    const preparedProducts = productsList.filter(
-      product =>
-        ram === product.ram ||
-        capacity === product.capacity ||
-        screen === product.screen,
-    );
+    const preparedProducts = productsList.filter(product => (
+      ram === product.ram || capacity === product.capacity
+      || screen === product.screen
+    ));
 
     return preparedProducts;
   };
@@ -83,11 +93,11 @@ export const ProductDetailsPage: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    client.get<Product[]>('products.json').then(setProducts);
+    client.get<Product[]>('products.json')
+      .then(setProducts);
 
-    client
-      .get<ProductPage>(`products/${productId}.json`)
-      .then(product => {
+    client.get<ProductPage>(`products/${productId}.json`)
+      .then((product) => {
         setProductData(product);
         setCurrentPhoto(product.images[0]);
       })
@@ -97,11 +107,15 @@ export const ProductDetailsPage: React.FC = () => {
   return (
     <>
       <section className="product">
-        {isLoading && <Loader />}
+        {isLoading && (
+          <Loader />
+        )}
 
         {!isLoading && (
           <>
-            <ProductPageHeader productName={name} />
+            <ProductPageHeader
+              productName={name}
+            />
 
             <div className="product__content">
               <ProductPagePhotos
@@ -126,7 +140,9 @@ export const ProductDetailsPage: React.FC = () => {
                 processor={processor}
               />
 
-              <ProductAbout productDescr={description} />
+              <ProductAbout
+                productDescr={description}
+              />
 
               <ProductSpecs
                 screen={screen}

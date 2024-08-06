@@ -25,8 +25,7 @@ export const Home: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    client
-      .get<Product[]>('products.json')
+    client.get<Product[]>('products.json')
       .then(setProducts)
       .finally(() => setIsLoading(false));
   }, [setProducts]);
@@ -53,7 +52,9 @@ export const Home: React.FC = () => {
           </section>
 
           <section className="section categories">
-            <Categories products={products || []} />
+            <Categories
+              products={products || []}
+            />
           </section>
 
           <section className="section brand-new home__brand-new">

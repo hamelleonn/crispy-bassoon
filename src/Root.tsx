@@ -4,8 +4,9 @@ import App from './App';
 import { Home } from './pages/Home/Home';
 import { Phones } from './pages/Phones/Phones';
 import { PhonesProvider } from './storage/phonesContext';
-// eslint-disable-next-line max-len
-import { ProductDetailsPage } from './pages/ProductsDetailPage/ProductDetailsPage';
+import {
+  ProductDetailsPage,
+} from './pages/ProductsDetailPage/ProductDetailsPage';
 import { Tablets } from './pages/Tablets/Tablets';
 import { Accessories } from './pages/Accessories/Accessories';
 import { Favorites } from './pages/Favorites/Favorites';

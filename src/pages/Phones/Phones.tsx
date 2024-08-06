@@ -13,7 +13,12 @@ import { SortType } from '../../types/SortType';
 import { PhonesList } from '../../components/PhonesList/PhonesList';
 
 export const Phones: React.FC = () => {
-  const { sortParams, perPageParams, products, setProducts } = usePhones();
+  const {
+    sortParams,
+    perPageParams,
+    products,
+    setProducts,
+  } = usePhones();
 
   const [searchParams] = useSearchParams();
 
@@ -27,43 +32,37 @@ export const Phones: React.FC = () => {
   const getSortedProducts = () => {
     switch (sortType as SortType) {
       case SortType.Alphabetically:
-        return [...products].sort((prev, next) => {
-          return next.name.localeCompare(prev.name);
-        });
+        return [...products].sort((prev, next) => (
+          next.name.localeCompare(prev.name)
+        ));
 
       case SortType.Cheapest:
-        return [...products].sort(
-          (prev, next) => prev.fullPrice - next.fullPrice,
-        );
+        return [...products]
+          .sort((prev, next) => prev.fullPrice - next.fullPrice);
 
       default:
         return [...products].sort((prev, next) => next.year - prev.year);
     }
   };
 
-  const filteredProducts = getSortedProducts().filter(product =>
-    product.name
-      .toLowerCase()
-      .trim()
-      .includes(phoneSearchValue.toLowerCase().trim()),
-  );
+  const filteredProducts = getSortedProducts().filter(product => (
+    product.name.toLowerCase().trim()
+      .includes(phoneSearchValue.toLowerCase().trim())
+  ));
 
   const productsLength = filteredProducts.length;
 
   const lastProductIndex = currentPage * itemsPerPage;
   const firstProductIndex = lastProductIndex - itemsPerPage;
 
-  const slicedProducts = filteredProducts.slice(
-    firstProductIndex,
-    lastProductIndex,
-  );
+  const slicedProducts = filteredProducts
+    .slice(firstProductIndex, lastProductIndex);
 
   useEffect(() => {
     if (!products.length) {
       setIsLoading(true);
 
-      client
-        .get<Product[]>('products.json')
+      client.get<Product[]>('products.json')
         .then(setProducts)
         .finally(() => setIsLoading(false));
     }
@@ -79,19 +78,28 @@ export const Phones: React.FC = () => {
             <Breadcrumbs />
           </div>
 
-          <h1 className="content__title">Mobile phones</h1>
+          <h1 className="content__title">
+            Mobile phones
+          </h1>
 
-          <p className="phones__count">{`${products.length} models`}</p>
+          <p className="phones__count">
+            {`${products.length} models`}
+          </p>
 
           <section className="section section__phones-pagination">
             {!filteredProducts.length && (
-              <p className="content__not-fount">Products not found</p>
+              <p className="content__not-fount">
+                Products not found
+              </p>
             )}
 
             {!!filteredProducts.length && (
               <>
                 <div className="pagination__sort-params">
-                  <Dropdown title="Sort by" sortParams={sortParams} />
+                  <Dropdown
+                    title="Sort by"
+                    sortParams={sortParams}
+                  />
                   <Dropdown
                     title="Items on page"
                     perPageParams={perPageParams}
@@ -101,7 +109,9 @@ export const Phones: React.FC = () => {
                   />
                 </div>
 
-                <PhonesList products={slicedProducts} />
+                <PhonesList
+                  products={slicedProducts}
+                />
 
                 <Pagination
                   productsLength={productsLength}

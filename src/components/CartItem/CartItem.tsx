@@ -4,13 +4,24 @@ import { Product } from '../../types/Product';
 import { usePhones } from '../../hooks/usePhones';
 
 type Props = {
-  item: Product;
+  item: Product,
 };
 
-export const CartItem: React.FC<Props> = ({ item }) => {
-  const { removeCartItem, getProductCount, plusCartItem, minusCartItem } =
-    usePhones();
-  const { image, name, price, itemId } = item;
+export const CartItem: React.FC<Props> = ({
+  item,
+}) => {
+  const {
+    removeCartItem,
+    getProductCount,
+    plusCartItem,
+    minusCartItem,
+  } = usePhones();
+  const {
+    image,
+    name,
+    price,
+    itemId,
+  } = item;
 
   const count = getProductCount(itemId);
 
@@ -33,7 +44,9 @@ export const CartItem: React.FC<Props> = ({ item }) => {
         <img src={image.replace('../', '')} alt="Phone" />
       </div>
 
-      <div className="cart__item-title">{name}</div>
+      <div className="cart__item-title">
+        {name}
+      </div>
 
       <div className="cart__item-select-count">
         <Button
@@ -50,7 +63,9 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           <img src="img/icons/minus.svg" alt="Minus" />
         </Button>
 
-        <div className="cart__item-count">{getProductCount(itemId)}</div>
+        <div className="cart__item-count">
+          {getProductCount(itemId)}
+        </div>
 
         <Button
           className="
@@ -66,7 +81,9 @@ export const CartItem: React.FC<Props> = ({ item }) => {
         </Button>
       </div>
 
-      <div className="cart__item-total-price">{`$${localPrice}`}</div>
+      <div className="cart__item-total-price">
+        {`$${localPrice}`}
+      </div>
     </div>
   );
 };

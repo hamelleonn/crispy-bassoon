@@ -11,13 +11,17 @@ import { Loader } from '../../components/Loader/Loader';
 
 export const Cart: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { cartProducts, setProducts, products, getProductCount } = usePhones();
+  const {
+    cartProducts,
+    setProducts,
+    products,
+    getProductCount,
+  } = usePhones();
 
   useEffect(() => {
     setIsLoading(true);
 
-    client
-      .get<Product[]>('products.json')
+    client.get<Product[]>('products.json')
       .then(setProducts)
       .finally(() => setIsLoading(false));
   }, [setProducts]);
@@ -27,12 +31,10 @@ export const Cart: React.FC = () => {
   });
 
   const totalPrice = preparedCartProducts.reduce((acc, product) => {
-    return acc + getProductCount(product.itemId) * product.price;
+    return acc + (getProductCount(product.itemId) * product.price);
   }, 0);
 
-  const totalCount = cartProducts.reduce((acc, product) => {
-    return acc + product.count;
-  }, 0);
+  const { cartTotalCount } = usePhones();
 
   return (
     <section className="cart">
@@ -45,26 +47,37 @@ export const Cart: React.FC = () => {
           </div>
 
           {!preparedCartProducts.length && (
-            <h1 className="content__title cart__title">No products in cart</h1>
+            <h1 className="content__title cart__title">
+              No products in cart
+            </h1>
           )}
 
           {!!preparedCartProducts.length && (
             <>
-              <h1 className="content__title cart__title">Cart</h1>
+              <h1 className="content__title cart__title">
+                Cart
+              </h1>
 
               <div className="cart__wrapper">
-                <CartList cartItems={preparedCartProducts} />
+                <CartList
+                  cartItems={preparedCartProducts}
+                />
 
                 <div className="cart__order">
-                  <h2 className="cart__order-price">{`$${totalPrice}`}</h2>
+                  <h2 className="cart__order-price">
+                    {`$${totalPrice}`}
+                  </h2>
 
                   <p className="cart__order-count">
-                    {`Total for ${totalCount} ${totalCount > 1 ? 'items' : 'item'}`}
+                    {`Total for ${cartTotalCount} ${cartTotalCount > 1 ? 'items' : 'item'}`}
                   </p>
 
                   <div className="cart__order-line" />
 
-                  <Link className="cart__order-btn-link" to="/checkout">
+                  <Link
+                    className="cart__order-btn-link"
+                    to="/checkout"
+                  >
                     <Button
                       className="
                         button

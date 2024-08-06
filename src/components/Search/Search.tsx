@@ -1,9 +1,9 @@
 import React from 'react';
 
 type Props = {
-  searchDirectory: string;
-  value: string;
-  changeValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  searchDirectory: string,
+  value: string,
+  changeValue: (event: React.ChangeEvent<HTMLInputElement>) => void,
 };
 
 export const Search: React.FC<Props> = ({
@@ -22,7 +22,10 @@ export const Search: React.FC<Props> = ({
       />
 
       <div className="icon icon--search">
-        <img src="img/icons/search.svg" alt="Icon Search" />
+        <img
+          src="img/icons/search.svg"
+          alt="Icon Search"
+        />
       </div>
     </div>
   );
