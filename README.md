@@ -21,7 +21,7 @@ The React Phone Shop is a modern e-commerce application built to demonstrate a f
 
 2. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/phone-catalog.git
+   git clone https://github.com/hyper2307/phone-catalog.git
    ```
 
 3. **Navigate to the Project Directory:**
