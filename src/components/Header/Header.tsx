@@ -1,13 +1,11 @@
-import React from 'react';
-import { NavLink, Link, useSearchParams } from 'react-router-dom';
-import { useLocation } from 'react-router';
+import { FC } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { NavLink, Link } from 'react-router-dom';
 import cn from 'classnames';
+import { Button } from '../Button/Button';
+import { usePhones } from '../../hooks/usePhones';
 
 import './Header.scss';
-import { Search } from '../Search/Search';
-import { usePhones } from '../../hooks/usePhones';
-import { getSearchWith } from '../../utils/getSearchWith';
-import { Params } from '../../types/Params';
 
 const getNavClass = ({ isActive }: { isActive: boolean }) => (cn('nav__link', {
   'nav__link--active': isActive,
@@ -21,38 +19,15 @@ const getIconClass = ({ isActive }: { isActive: boolean }) => (cn(
   },
 ));
 
-export const Header: React.FC = () => {
-  const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const phoneSearchValue = searchParams.get('phoneSearchValue') || '';
-  const tabletSearchValue = searchParams.get('tabletSearchValue') || '';
-
-  const setSearchWith = (params: Params) => {
-    const search = getSearchWith(params, searchParams);
-
-    setSearchParams(search);
-  };
-
-  const handlePhoneSearchChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const { target } = event;
-
-    setSearchWith({ phoneSearchValue: target.value || null });
-  };
-
-  const handleTabletSearchChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const { target } = event;
-
-    setSearchWith({ tabletSearchValue: target.value || null });
-  };
+export const Header: FC = () => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 640px)' });
 
   const {
     favoritesIds,
     cartProducts,
     cartTotalCount,
+    isMenuActive,
+    setIsMenuActive,
   } = usePhones();
 
   return (
@@ -62,75 +37,93 @@ export const Header: React.FC = () => {
           <img src="img/logo.svg" alt="logo" />
         </Link>
 
-        <nav className="nav header__nav">
-          <NavLink to="/" className={getNavClass}>
-            home
-          </NavLink>
+        {!isTabletOrMobile && (
+          <>
+            <nav className="nav header__nav">
+              <NavLink to="/" className={getNavClass}>
+                home
+              </NavLink>
 
-          <NavLink to="/phones" className={getNavClass}>
-            phones
-          </NavLink>
+              <NavLink to="/phones" className={getNavClass}>
+                phones
+              </NavLink>
 
-          <NavLink to="/tablets" className={getNavClass}>
-            tablets
-          </NavLink>
+              <NavLink to="/tablets" className={getNavClass}>
+                tablets
+              </NavLink>
 
-          <NavLink to="/accessories" className={getNavClass}>
-            accessories
-          </NavLink>
-        </nav>
+              <NavLink to="/accessories" className={getNavClass}>
+                accessories
+              </NavLink>
+            </nav>
+          </>
+        )}
       </div>
 
       <div className="header__wrapper">
-        {location.pathname === '/phones' && (
-          <Search
-            searchDirectory="phones"
-            value={phoneSearchValue}
-            changeValue={handlePhoneSearchChange}
-          />
+        {!isTabletOrMobile && (
+          <>
+            <NavLink
+              to="/favorites"
+              className={getIconClass}
+            >
+              <img
+                className="icon__img"
+                src="img/icons/heart.svg"
+                alt="Icon Like"
+              />
+
+              {!!favoritesIds.length && (
+                <div className="icon__count">
+                  {favoritesIds.length}
+                </div>
+              )}
+            </NavLink>
+
+            <NavLink
+              to="/cart"
+              className={getIconClass}
+            >
+              <img
+                className="icon__img"
+                src="img/icons/cart.svg"
+                alt="Icon Card"
+              />
+
+              {!!cartProducts.length && (
+                <div className="icon__count">
+                  {cartTotalCount}
+                </div>
+              )}
+            </NavLink>
+          </>
         )}
 
-        {location.pathname === '/tablets' && (
-          <Search
-            searchDirectory="tablets"
-            value={tabletSearchValue}
-            changeValue={handleTabletSearchChange}
-          />
+        {(isTabletOrMobile && !isMenuActive) && (
+          <Button
+            className="header__icon icon icon__menu"
+            onClick={() => setIsMenuActive(true)}
+          >
+            <img
+              className="icon__img"
+              src="img/icons/menu.svg"
+              alt="Icon Card"
+            />
+          </Button>
         )}
 
-        <NavLink
-          to="/favorites"
-          className={getIconClass}
-        >
-          <img
-            className="icon__img"
-            src="img/icons/heart.svg"
-            alt="Icon Like"
-          />
-
-          {!!favoritesIds.length && (
-            <div className="icon__count">
-              {favoritesIds.length}
-            </div>
-          )}
-        </NavLink>
-
-        <NavLink
-          to="/cart"
-          className={getIconClass}
-        >
-          <img
-            className="icon__img"
-            src="img/icons/cart.svg"
-            alt="Icon Card"
-          />
-
-          {!!cartProducts.length && (
-            <div className="icon__count">
-              {cartTotalCount}
-            </div>
-          )}
-        </NavLink>
+        {isMenuActive && (
+          <Button
+            className="header__icon icon icon__menu"
+            onClick={() => setIsMenuActive(false)}
+          >
+            <img
+              className="icon__img"
+              src="img/icons/close.svg"
+              alt="Icon Card"
+            />
+          </Button>
+        )}
       </div>
     </header>
   );

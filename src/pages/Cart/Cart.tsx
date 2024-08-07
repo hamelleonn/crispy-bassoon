@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import './Cart.scss';
 import { Button, ButtonBack } from '../../components/Button/Button';
 import { usePhones } from '../../hooks/usePhones';
 import { client } from '../../client/httpClient';
 import { Product } from '../../types/Product';
 import { CartList } from '../../components/CartList/CartList';
 import { Loader } from '../../components/Loader/Loader';
+
+import './Cart.scss';
 
 export const Cart: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);

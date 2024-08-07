@@ -3,8 +3,32 @@
 .home {
   padding-top: 40px;
 
+  @include on-tablet {
+    padding-top: 32px;
+  }
+
+  @include on-phone {
+    padding-top: 12px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    font-weight: 800;
+    font-size: 56px;
+
+    @include on-tablet {
+      font-size: 32px;
+    }
+  }
+
   &__slider {
     margin-bottom: 104px;
+
+    @include on-tablet {
+      position: relative;
+      right: -10px;
+      left: -10px;
+    }
   }
 }
 

@@ -4,10 +4,39 @@
   padding-block: 32px;
   border-top: 1px solid $c-elements;
 
+  &-mobile {
+    display: none;
+    flex-direction: column;
+    gap: 32px;
+
+    @include on-phone {
+      display: flex;
+    }
+  }
+
+  &-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include on-phone {
+      display: none;
+    }
+  }
+
   &__info {
     display: flex;
     align-items: center;
     gap: 64px;
+
+    @include on-tablet {
+      gap: 10px;
+    }
+
+    @include on-phone {
+      flex-direction: column;
+      align-items: start
+    }
   }
 
   &__item {
@@ -25,11 +54,16 @@
     display: flex;
     align-items: center;
     gap: 16px;
+
+    @include on-phone {
+      width: 100%;
+      justify-content: center;
+    }
   }
 
   &__text {
     @extend %small-text;
-    
+
     color: $c-secondary;
   }
 }

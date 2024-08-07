@@ -16,7 +16,20 @@
 
   &__products-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
     gap: 40px 16px;
+    justify-items: center;
+
+    @include on-desktop-s {
+      grid-template-columns: repeat(3, minmax(150px, 1fr));
+    }
+
+    @include on-tablet {
+      grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+
+    @include on-phone {
+      grid-template-columns: repeat(1, minmax(150px, 1fr));
+    }
   }
 }

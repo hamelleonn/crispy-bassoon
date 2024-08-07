@@ -1,5 +1,8 @@
+@import '../../styles/utils';
+
 .categories {
   &__title {
+    font-size: 32px;
     margin-bottom: 24px;
   }
 
@@ -7,13 +10,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
+
+    @include on-tablet {
+      flex-direction: column;
+      gap: 32px;
+    }
   }
 
   &__item {
-    width: 368px;
+    min-width: 100px;
+    max-width: 368px;
+    width: 100%;
+
+    a {
+      display: block;
+    }
   }
 
   &__img {
+    position: absolute;
+    inset: 0;
     object-fit: cover;
     height: 100%;
     transition: all 0.3s;
@@ -41,8 +58,10 @@
     }
 
     &-wrapper {
-      height: 368px;
+      position: relative;
+      height: 100%;
       overflow: hidden;
+      padding-bottom: 100%;
       margin-bottom: 24px;
     }
   }

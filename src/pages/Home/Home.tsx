@@ -10,8 +10,6 @@ import { Product } from '../../types/Product';
 import { client } from '../../client/httpClient';
 import { Loader } from '../../components/Loader/Loader';
 
-const BANNER_INTERVAL = 5000;
-
 export const Home: React.FC = () => {
   const {
     products,
@@ -30,41 +28,41 @@ export const Home: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, [setProducts]);
 
+  if (isLoading) {
+    return (
+      <Loader />
+    );
+  }
+
   return (
     <div className="home">
-      {isLoading && <Loader />}
+      <h1 className="home__title">Welcome to Nice Gadgets store!</h1>
 
-      {!isLoading && (
-        <>
-          <section className="slider home__slider">
-            <Slider
-              slidesCount={banners.length}
-              interval={BANNER_INTERVAL}
-              banners={banners}
-            />
-          </section>
+      <section className="slider home__slider">
+        <Slider
+          banners={banners}
+        />
+      </section>
 
-          <section className="section hot-prices home__hot-prices">
-            <ProductsList
-              products={preparedHotPriceProducts}
-              title="Hot prices"
-            />
-          </section>
+      <section className="section hot-prices home__hot-prices">
+        <ProductsList
+          products={preparedHotPriceProducts}
+          title="Hot prices"
+        />
+      </section>
 
-          <section className="section categories">
-            <Categories
-              products={products || []}
-            />
-          </section>
+      <section className="section categories">
+        <Categories
+          products={products || []}
+        />
+      </section>
 
-          <section className="section brand-new home__brand-new">
-            <ProductsList
-              products={preparedBrandNewProducts}
-              title="Brand new models"
-            />
-          </section>
-        </>
-      )}
+      <section className="section brand-new home__brand-new">
+        <ProductsList
+          products={preparedBrandNewProducts}
+          title="Brand new models"
+        />
+      </section>
     </div>
   );
 };

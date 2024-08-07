@@ -10,25 +10,39 @@
   }
 
   &-wrapper {
-    display: flex;
-    margin: 0 auto;
-    transition: all 0.3s;
+    position: relative;
+
+    @include on-phone {
+      margin-inline: -80px;
+    }
   }
 
   &-slide {
-    width: 1040px;
+    position: relative;
+    width: 100%;
     height: 400px;
+    padding-inline: 40px;
     flex: 0 0 100%;
+
+    @include on-phone {
+      padding-bottom: 100%;
+    }
 
     img {
       height: 100%;
       width: 100%;
       object-fit: cover;
+
+      @include on-phone {
+        position: absolute;
+        inset: 0;
+      }
     }
   }
 
   &-btn {
     position: absolute;
+    z-index: 10;
     width: 32px;
     height: 100%;
     border: 1px solid $c-icons;
@@ -41,6 +55,10 @@
 
     &:hover {
       border: 1px solid $c-primary;
+    }
+
+    @include on-phone {
+      display: none;
     }
 
     path {
@@ -60,12 +78,15 @@
 
   &-dots {
     position: absolute;
+    left: 50% !important;
+    bottom: -28px !important;
+    transform: translateX(-50%) !important;
+    z-index: 10;
     display: flex;
     gap: 10px;
-    left: 50%;
     align-items: center;
     justify-content: space-between;
-    transform: translateX(-50%);
+    width: 80px !important;
     height: 24px;
   }
 

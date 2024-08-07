@@ -32,6 +32,8 @@ type PhonesContextType = {
   minusCartItem: (v: string) => void,
   getProductCount: (v: string) => number,
   cartTotalCount: number,
+  isMenuActive: boolean,
+  setIsMenuActive: (v: boolean) => void;
 };
 
 export const PhonesContext = React.createContext<PhonesContextType>({
@@ -56,6 +58,8 @@ export const PhonesContext = React.createContext<PhonesContextType>({
   minusCartItem: () => {},
   getProductCount: () => 0,
   cartTotalCount: 0,
+  isMenuActive: false,
+  setIsMenuActive: () => {},
 });
 
 type Props = {
@@ -72,6 +76,7 @@ export const PhonesProvider: React.FC<Props> = ({ children }) => {
   const [
     cartProducts, setCartProducts,
   ] = useLocalStorage<CartProduct[]>('cart', []);
+  const [isMenuActive, setIsMenuActive] = useState(false);
 
   const sortParams = [
     {
@@ -197,6 +202,8 @@ export const PhonesProvider: React.FC<Props> = ({ children }) => {
         minusCartItem,
         getProductCount,
         cartTotalCount,
+        isMenuActive,
+        setIsMenuActive,
       }}
     >
       {children}

@@ -1,12 +1,10 @@
 .loader {
-  height: 100%;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
 
   div {
     justify-content: center;
-    height: 100%;
   }
 }

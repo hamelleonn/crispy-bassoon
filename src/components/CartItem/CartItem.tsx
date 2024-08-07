@@ -29,60 +29,64 @@ export const CartItem: React.FC<Props> = ({
 
   return (
     <div className="cart__item">
-      <Button
-        className="
+      <div className="cart__item-info">
+        <Button
+          className="
           button
           button__remove-item
           cart__remove-btn
         "
-        onClick={() => removeCartItem(itemId)}
-      >
-        <img src="img/icons/close.svg" alt="Cross" />
-      </Button>
+          onClick={() => removeCartItem(itemId)}
+        >
+          <img src="img/icons/close.svg" alt="Cross" />
+        </Button>
 
-      <div className="cart__item-img">
-        <img src={image.replace('../', '')} alt="Phone" />
+        <div className="cart__item-img">
+          <img src={image.replace('../', '')} alt="Phone" />
+        </div>
+
+        <div className="cart__item-title">
+          {name}
+        </div>
       </div>
 
-      <div className="cart__item-title">
-        {name}
-      </div>
-
-      <div className="cart__item-select-count">
-        <Button
-          className="
+      <div className="cart__item-price">
+        <div className="cart__item-select-count">
+          <Button
+            className="
             button
             button__secondary
             button--small
             button__nav
             cart__item-minus
           "
-          disabled={count <= 1}
-          onClick={() => minusCartItem(itemId)}
-        >
-          <img src="img/icons/minus.svg" alt="Minus" />
-        </Button>
+            disabled={count <= 1}
+            onClick={() => minusCartItem(itemId)}
+          >
+            <img src="img/icons/minus.svg" alt="Minus" />
+          </Button>
 
-        <div className="cart__item-count">
-          {getProductCount(itemId)}
-        </div>
+          <div className="cart__item-count">
+            {getProductCount(itemId)}
+          </div>
 
-        <Button
-          className="
+          <Button
+            className="
             button
             button__secondary
             button--small
             button__nav
             cart__item-plus
           "
-          onClick={() => plusCartItem(itemId)}
-        >
-          <img src="img/icons/plus.svg" alt="Plus" />
-        </Button>
-      </div>
+            onClick={() => plusCartItem(itemId)}
+          >
+            <img src="img/icons/plus.svg" alt="Plus" />
+          </Button>
+        </div>
 
-      <div className="cart__item-total-price">
-        {`$${localPrice}`}
+        <div className="cart__item-total-price">
+          {`$${localPrice}`}
+        </div>
       </div>
     </div>
   );

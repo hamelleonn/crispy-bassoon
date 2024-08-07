@@ -17,6 +17,10 @@
     display: flex;
     align-items: center;
     gap: 64px;
+
+    @include on-desktop-s {
+      gap: 32px;
+    }
   }
 
   &__wrapper {
@@ -85,6 +89,10 @@
   gap: 64px;
   height: 100%;
 
+  @include on-desktop-s {
+    gap: 32px;
+  }
+
   &__link {
     @extend %uppercase;
     
@@ -130,6 +138,10 @@
   align-items: center;
   justify-content: center;
   position: relative;
+
+  &__menu {
+    background-color: #fff;
+  }
 
   &__img {
     transition: all 0.3s;

@@ -13,9 +13,9 @@ export const Categories: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <h1 className="section__title categories__title">
+      <h3 className="section__title categories__title">
         Shop by category
-      </h1>
+      </h3>
 
       <div className="categories__list">
         <div className="categories__item">
@@ -30,9 +30,9 @@ export const Categories: React.FC<Props> = ({
           </Link>
 
           <Link to="/phones" className="categories__subtitle-link">
-            <h3 className="categories__subtitle">
+            <h4 className="categories__subtitle">
               Mobile phones
-            </h3>
+            </h4>
           </Link>
 
           <p className="categories__count">
@@ -52,9 +52,9 @@ export const Categories: React.FC<Props> = ({
           </Link>
 
           <Link to="/tablets" className="categories__subtitle-link">
-            <h3 className="categories__subtitle">
+            <h4 className="categories__subtitle">
               Tablets
-            </h3>
+            </h4>
           </Link>
 
           <p className="categories__count">
@@ -74,9 +74,9 @@ export const Categories: React.FC<Props> = ({
           </Link>
 
           <Link to="/accessories" className="categories__subtitle-link">
-            <h3 className="categories__subtitle">
+            <h4 className="categories__subtitle">
               Accessories
-            </h3>
+            </h4>
           </Link>
 
           <p className="categories__count">
