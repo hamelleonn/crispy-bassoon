@@ -79,7 +79,7 @@ export const Phones: React.FC = () => {
           </div>
 
           <h1 className="content__title">
-            Mobile phones
+            Вазони
           </h1>
 
           <p className="phones__count">

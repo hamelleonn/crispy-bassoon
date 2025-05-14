@@ -36,7 +36,7 @@ export const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <h1 className="home__title">Welcome to Nice Gadgets store!</h1>
+      <h1 className="home__title">Ласкаво просимо у "Квіти для тебе"!</h1>
 
       <section className="slider home__slider">
         <Slider

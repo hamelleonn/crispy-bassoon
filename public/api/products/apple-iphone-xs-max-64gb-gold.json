@@ -1,46 +1,46 @@
 {
-    "id": "apple-iphone-xs-max-64gb-gold",
-	"namespaceId": "apple-iphone-xs-max",
-	"name": "Apple iPhone XS Max 64GB Gold",
-	"capacityAvailable": ["64GB", "256GB"],
-	"capacity": "64GB",
-	"priceRegular": 960,
-	"priceDiscount": 900,
-	"colorsAvailable": ["spacegray", "gold", "silver"],
-	"color": "gold",
+	"id": "orchid-phalaenopsis-white-ceramic-12cm",
+	"namespaceId": "orchid-phalaenopsis",
+	"name": "Орхідея Phalaenopsis White у керамічному горщику 12 см",
+	"sizesAvailable": ["10cm", "12cm", "15cm"],
+	"size": "12cm",
+	"priceRegular": 450,
+	"priceDiscount": 400,
+	"colorsAvailable": ["білий", "зелений", "графіт"],
+	"potColor": "білий",
 	"images": [
-		"img/phones/apple-iphone-xs-max/gold/00.jpg",
-		"img/phones/apple-iphone-xs-max/gold/01.jpg",
-		"img/phones/apple-iphone-xs-max/gold/02.jpg",
-		"img/phones/apple-iphone-xs-max/gold/03.jpg",
-		"img/phones/apple-iphone-xs-max/gold/04.jpg"
+	  "img/plants/orchid-phalaenopsis/white/00.jpg",
+	  "img/plants/orchid-phalaenopsis/white/01.jpg",
+	  "img/plants/orchid-phalaenopsis/white/02.jpg"
 	],
 	"description": [
-		{
-			"title": "And then there was Pro",
-			"text": [
-				"A transformative triple-camera system that adds tons of capability without complexity.",
-				"An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro."
-			]
-		},
-		{
-			"title": "Camera",
-			"text": [
-				"Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it."
-			]
-		},
-		{
-			"title": "Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.",
-			"text": [
-				"iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with."
-			]
-		}
+	  {
+		"title": "Рослина",
+		"text": [
+		  "Чарівна фаленопсис з білими квітками, що цвітуть кілька разів на рік.",
+		  "Висота рослини з горщиком: приблизно 30–35 см."
+		]
+	  },
+	  {
+		"title": "Догляд",
+		"text": [
+		  "Світло: розсіяне, без прямих сонячних променів.",
+		  "Полив: раз на 7–10 днів, підливати воду під корінь, не допускаючи застою."
+		]
+	  },
+	  {
+		"title": "Горщик та субстрат",
+		"text": [
+		  "Горщик: біла кераміка, діаметром 12 см, з дренажними отворами.",
+		  "Субстрат: спеціальна суміш для орхідей на основі кори та вугілля."
+		]
+	  }
 	],
-	"screen": "6.5' OLED (Super Retina HD)",
-	"resolution": "2688х1242",
-	"processor": "Apple A12 Bionic",
-	"ram": "4GB",
-	"camera": "12 Mp + 12 Mp + 7MP",
-	"zoom": "Digital, 10x / Optical, 2x",
-	"cell": ["GPRS", "EDGE", "WCDMA", "UMTS", "HSPA", "LTE"]
-}
+	"lightRequirements": "розсіяне світло",
+	"waterRequirements": "помірний полив",
+	"bloomSeason": ["зима", "весна"],
+	"plantType": "Phalaenopsis",
+	"potMaterial": "кераміка",
+	"potDiameter": "12cm"
+  }
+  

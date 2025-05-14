@@ -41,19 +41,19 @@ export const Header: FC = () => {
           <>
             <nav className="nav header__nav">
               <NavLink to="/" className={getNavClass}>
-                home
+                ГОЛОВНА
               </NavLink>
 
               <NavLink to="/phones" className={getNavClass}>
-                phones
+                КВІТИ
               </NavLink>
 
               <NavLink to="/tablets" className={getNavClass}>
-                tablets
+                ВАЗОНИ
               </NavLink>
 
               <NavLink to="/accessories" className={getNavClass}>
-                accessories
+                ДОБРИВО
               </NavLink>
             </nav>
           </>
