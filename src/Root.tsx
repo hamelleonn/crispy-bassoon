@@ -2,7 +2,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import App from './App';
 import { Home } from './pages/Home/Home';
-import { Phones } from './pages/Phones/Phones';
+import { Plants } from './pages/Phones/Phones';
 import { PhonesProvider } from './storage/phonesContext';
 import {
   ProductDetailsPage,
@@ -21,7 +21,7 @@ export const Root: React.FC = () => (
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="phones">
-            <Route index element={<Phones />} />
+            <Route index element={<Plants />} />
             <Route path=":productId?" element={<ProductDetailsPage />} />
           </Route>
           <Route path="/tablets" element={<Tablets />} />

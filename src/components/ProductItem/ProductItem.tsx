@@ -8,12 +8,10 @@ import { Button } from '../Button/Button';
 import { usePhones } from '../../hooks/usePhones';
 
 type Props = {
-  product: Product
+  product: Product;
 };
 
-export const ProductItem: React.FC<Props> = ({
-  product,
-}) => {
+export const ProductItem: React.FC<Props> = ({ product }) => {
   const {
     favoritesIds,
     cartProducts,
@@ -28,9 +26,8 @@ export const ProductItem: React.FC<Props> = ({
     name,
     price,
     fullPrice,
-    screen,
-    capacity,
-    ram,
+    size,
+    color,
   } = product;
 
   const isCartItem = cartProducts.find(({ id }) => id === itemId);
@@ -39,7 +36,7 @@ export const ProductItem: React.FC<Props> = ({
     <div className="product-item">
       <Link to={`/phones/${phoneId}`}>
         <div className="product-item__img">
-          <img src={`_new/${image}`} alt={phoneId} />
+          <img src={image} alt={name} />
         </div>
       </Link>
 
@@ -63,35 +60,36 @@ export const ProductItem: React.FC<Props> = ({
       <hr className="product-item__line" />
 
       <div className="product-item__descr">
-        <div className="product-item__descr-wrapper">
-          <p className="product-item__descr-name">
-            Screen
-          </p>
+        {size && (
+          <div className="product-item__descr-wrapper">
+            <p className="product-item__descr-name">Висота</p>
+            <p className="product-item__descr-value">
+              {size === 'mini' ? 'до 15 см'
+                : size === 'small' ? '15–30 см'
+                : size === 'medium' ? '30–60 см'
+                : size === 'large' ? '60+ см'
+                : 'невідомо'}
+            </p>
+          </div>
+        )}
 
-          <p className="product-item__descr-value">
-            {screen}
-          </p>
-        </div>
+        {color && (
+          <div className="product-item__descr-wrapper">
+            <p className="product-item__descr-name">Колір листя</p>
+            <p className="product-item__descr-value">{color}</p>
+          </div>
+        )}
 
-        <div className="product-item__descr-wrapper">
-          <p className="product-item__descr-name">
-            Capacity
-          </p>
-
-          <p className="product-item__descr-value">
-            {capacity}
-          </p>
-        </div>
-
-        <div className="product-item__descr-wrapper">
-          <p className="product-item__descr-name">
-            RAM
-          </p>
-
-          <p className="product-item__descr-value">
-            {ram}
-          </p>
-        </div>
+        {size && (
+          <div className="product-item__descr-wrapper">
+            <p className="product-item__descr-name">Догляд</p>
+            <p className="product-item__descr-value">
+              {(size === 'mini' || size === 'small')
+                ? 'Легкий як життя до сесії'
+                : 'Потрібен полив і любов'}
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="product-item__btns">
@@ -106,26 +104,18 @@ export const ProductItem: React.FC<Props> = ({
           )}
           onClick={() => handleOnCartAdd(itemId)}
         >
-          {isCartItem ? 'Added to cart' : 'Add to card'}
+          {isCartItem ? 'Added to cart' : 'Add to cart'}
         </Button>
 
         <Button
-          className="
-            button
-            button__like
-            button--medium
-          "
+          className="button button__like button--medium"
           onClick={() => handleOnLikeClick(itemId)}
         >
-          {
-            favoritesIds?.includes(itemId)
-              ? (
-                <img src="img/icons/heart-active.svg" alt="Heart" />
-              )
-              : (
-                <img src="img/icons/heart.svg" alt="Heart" />
-              )
-          }
+          {favoritesIds?.includes(itemId) ? (
+            <img src="img/icons/heart-active.svg" alt="Heart" />
+          ) : (
+            <img src="img/icons/heart.svg" alt="Heart" />
+          )}
         </Button>
       </div>
     </div>

@@ -1,8 +1,4 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useState,
-} from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { Product } from '../types/Product';
 import { SortType } from '../types/SortType';
@@ -13,7 +9,6 @@ import { CartProduct } from '../types/CartProduct';
 type PhonesContextType = {
   products: Product[],
   setProducts: Dispatch<SetStateAction<Product[]>>,
-  preparedBrandNewProducts: Product[],
   preparedHotPriceProducts: Product[],
   itemsPerPage: number,
   setItemsPerPage: Dispatch<SetStateAction<number>>,
@@ -38,22 +33,21 @@ type PhonesContextType = {
 
 export const PhonesContext = React.createContext<PhonesContextType>({
   products: [],
-  setProducts: () => { },
+  setProducts: () => {},
   preparedHotPriceProducts: [],
-  preparedBrandNewProducts: [],
   itemsPerPage: 0,
-  setItemsPerPage: () => { },
+  setItemsPerPage: () => {},
   sortParams: [],
   perPageParams: [],
   suggestedProducts: [],
-  setSuggestedProducts: () => { },
+  setSuggestedProducts: () => {},
   favoritesIds: [],
-  setFavoritesIds: () => { },
+  setFavoritesIds: () => {},
   cartProducts: [],
-  setCartProducts: () => { },
-  handleOnLikeClick: () => { },
-  handleOnCartAdd: () => { },
-  removeCartItem: () => { },
+  setCartProducts: () => {},
+  handleOnLikeClick: () => {},
+  handleOnCartAdd: () => {},
+  removeCartItem: () => {},
   plusCartItem: () => {},
   minusCartItem: () => {},
   getProductCount: () => 0,
@@ -70,18 +64,14 @@ export const PhonesProvider: React.FC<Props> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState(16);
   const [suggestedProducts, setSuggestedProducts] = useState<Product[]>([]);
-  const [
-    favoritesIds, setFavoritesIds,
-  ] = useLocalStorage<string[]>('favorites', []);
-  const [
-    cartProducts, setCartProducts,
-  ] = useLocalStorage<CartProduct[]>('cart', []);
+  const [favoritesIds, setFavoritesIds] = useLocalStorage<string[]>('favorites', []);
+  const [cartProducts, setCartProducts] = useLocalStorage<CartProduct[]>('cart', []);
   const [isMenuActive, setIsMenuActive] = useState(false);
 
   const sortParams = [
     {
       type: SortType.Newest,
-      value: 'age',
+      value: 'size',
     },
     {
       type: SortType.Alphabetically,
@@ -99,10 +89,6 @@ export const PhonesProvider: React.FC<Props> = ({ children }) => {
     product.fullPrice - product.price >= 90
   )) || [];
 
-  const preparedBrandNewProducts = products?.filter((product: Product) => (
-    product.year >= 2019
-  )) || [];
-
   const handleOnLikeClick = (id: string) => {
     if (favoritesIds.includes(id)) {
       setFavoritesIds(favoritesIds.filter(favId => favId !== id));
@@ -112,78 +98,50 @@ export const PhonesProvider: React.FC<Props> = ({ children }) => {
   };
 
   const handleOnCartAdd = (itemId: string) => {
-    const itemIndex = cartProducts.findIndex(({ id }) => (
-      id === itemId
-    ));
+    const itemIndex = cartProducts.findIndex(({ id }) => id === itemId);
 
     setCartProducts(
       itemIndex === -1
-        ? (
-          [
-            ...cartProducts,
-            {
-              id: itemId,
-              count: 1,
-            },
-          ]
-        ) : (
-          cartProducts.filter(({ id }) => id !== itemId)
-        ),
+        ? [...cartProducts, { id: itemId, count: 1 }]
+        : cartProducts.filter(({ id }) => id !== itemId),
     );
   };
 
   const removeCartItem = (itemId: string) => {
-    setCartProducts(
-      cartProducts.filter(({ id }) => id !== itemId),
-    );
+    setCartProducts(cartProducts.filter(({ id }) => id !== itemId));
   };
 
   const plusCartItem = (itemId: string) => {
     setCartProducts(
-      cartProducts.map(product => {
-        if (product.id === itemId) {
-          return {
-            id: product.id,
-            count: product.count + 1,
-          };
-        }
-
-        return product;
-      }),
+      cartProducts.map(product => (
+        product.id === itemId
+          ? { id: product.id, count: product.count + 1 }
+          : product
+      )),
     );
   };
 
   const minusCartItem = (itemId: string) => {
     setCartProducts(
-      cartProducts.map(product => {
-        if (product.id === itemId) {
-          return {
-            id: product.id,
-            count: product.count > 1 ? product.count - 1 : product.count,
-          };
-        }
-
-        return product;
-      }),
+      cartProducts.map(product => (
+        product.id === itemId
+          ? { id: product.id, count: Math.max(1, product.count - 1) }
+          : product
+      )),
     );
   };
 
   const getProductCount = (itemId: string) => {
-    const cartItem = cartProducts.find(({ id }) => id === itemId);
-
-    return cartItem?.count || 0;
+    return cartProducts.find(({ id }) => id === itemId)?.count || 0;
   };
 
-  const cartTotalCount = cartProducts.reduce((acc, product) => {
-    return acc + product.count;
-  }, 0);
+  const cartTotalCount = cartProducts.reduce((acc, product) => acc + product.count, 0);
 
   return (
     <PhonesContext.Provider
       value={{
         products,
         setProducts,
-        preparedBrandNewProducts,
         preparedHotPriceProducts,
         itemsPerPage,
         setItemsPerPage,

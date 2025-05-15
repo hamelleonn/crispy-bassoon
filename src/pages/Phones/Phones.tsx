@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import './Phones.scss';
+import './Plants.scss';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { usePhones } from '../../hooks/usePhones';
 import { Pagination } from '../../components/Pagination/Pagination';
@@ -12,7 +12,7 @@ import { Loader } from '../../components/Loader/Loader';
 import { SortType } from '../../types/SortType';
 import { PhonesList } from '../../components/PhonesList/PhonesList';
 
-export const Phones: React.FC = () => {
+export const Plants: React.FC = () => {
   const {
     sortParams,
     perPageParams,
@@ -22,41 +22,45 @@ export const Phones: React.FC = () => {
 
   const [searchParams] = useSearchParams();
 
-  const phoneSearchValue = searchParams.get('phoneSearchValue') || '';
+  const searchValue = searchParams.get('phoneSearchValue') || '';
   const itemsPerPage = +(searchParams.get('perPage') || 32);
   const sortType = searchParams.get('sortType') || '';
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
+  const sizeOrder = {
+    mini: 0,
+    small: 1,
+    medium: 2,
+    large: 3,
+  };
+
   const getSortedProducts = () => {
+    const copy = [...products].filter(p => p.category === 'plants');
+
     switch (sortType as SortType) {
       case SortType.Alphabetically:
-        return [...products].sort((prev, next) => (
-          next.name.localeCompare(prev.name)
-        ));
-
+        return copy.sort((a, b) => a.name.localeCompare(b.name));
       case SortType.Cheapest:
-        return [...products]
-          .sort((prev, next) => prev.fullPrice - next.fullPrice);
-
+        return copy.sort((a, b) => a.fullPrice - b.fullPrice);
       default:
-        return [...products].sort((prev, next) => next.year - prev.year);
+        return copy.sort((a, b) =>
+          (sizeOrder[a.size as keyof typeof sizeOrder] ?? 99) -
+          (sizeOrder[b.size as keyof typeof sizeOrder] ?? 99)
+        );
     }
   };
 
-  const filteredProducts = getSortedProducts().filter(product => (
-    product.name.toLowerCase().trim()
-      .includes(phoneSearchValue.toLowerCase().trim())
-  ));
+  const filteredProducts = getSortedProducts()
+    .filter(product =>
+      product.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
   const productsLength = filteredProducts.length;
-
   const lastProductIndex = currentPage * itemsPerPage;
   const firstProductIndex = lastProductIndex - itemsPerPage;
-
-  const slicedProducts = filteredProducts
-    .slice(firstProductIndex, lastProductIndex);
+  const slicedProducts = filteredProducts.slice(firstProductIndex, lastProductIndex);
 
   useEffect(() => {
     if (!products.length) {
@@ -69,27 +73,25 @@ export const Phones: React.FC = () => {
   }, [products, setProducts]);
 
   return (
-    <div className="phones">
+    <div className="plants">
       {isLoading && <Loader />}
 
       {!isLoading && (
         <>
-          <div className="phones__breadcrumbs">
+          <div className="plants__breadcrumbs">
             <Breadcrumbs />
           </div>
 
-          <h1 className="content__title">
-            Вазони
-          </h1>
+          <h1 className="content__title">Вазони</h1>
 
-          <p className="phones__count">
-            {`${products.length} models`}
+          <p className="plants__count">
+            {`${productsLength} рослин знайдено`}
           </p>
 
-          <section className="section section__phones-pagination">
+          <section className="section section__plants-pagination">
             {!filteredProducts.length && (
               <p className="content__not-fount">
-                Products not found
+                Нічого не знайдено 🌱
               </p>
             )}
 
@@ -97,11 +99,11 @@ export const Phones: React.FC = () => {
               <>
                 <div className="pagination__sort-params">
                   <Dropdown
-                    title="Sort by"
+                    title="Сортування"
                     sortParams={sortParams}
                   />
                   <Dropdown
-                    title="Items on page"
+                    title="Кількість на сторінці"
                     perPageParams={perPageParams}
                     setCurrentPage={setCurrentPage}
                     isItemsPerPage
@@ -109,9 +111,7 @@ export const Phones: React.FC = () => {
                   />
                 </div>
 
-                <PhonesList
-                  products={slicedProducts}
-                />
+                <PhonesList products={slicedProducts} />
 
                 <Pagination
                   productsLength={productsLength}

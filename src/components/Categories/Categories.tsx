@@ -1,89 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import './Categories.scss';
+import { usePhones } from '../../hooks/usePhones';
 import { Product } from '../../types/Product';
+import { Loader } from '../Loader/Loader';
+import { PhonesList } from '../PhonesList/PhonesList';
 
 type Props = {
-  products: Product[]
+  category: string;
+  title: string;
 };
 
-export const Categories: React.FC<Props> = ({
-  products,
-}) => {
+export const Categories: React.FC<Props> = ({ category, title }) => {
+  const { products } = usePhones();
+
+  const filteredProducts = products.filter(
+    (product: Product) => product.category === category
+  );
+
   return (
-    <>
-      <h3 className="section__title categories__title">
-        Shop by category
-      </h3>
+    <div className="category-page">
+      <h1 className="content__title">{title}</h1>
 
-      <div className="categories__list">
-        <div className="categories__item">
-          <Link to="/phones">
-            <div className="categories__img-wrapper">
-              <img
-                className="categories__img categories__img-phones"
-                src="img/category-phones.png"
-                alt="Phones"
-              />
-            </div>
-          </Link>
+      {!products.length && <Loader />}
 
-          <Link to="/phones" className="categories__subtitle-link">
-            <h4 className="categories__subtitle">
-              Mobile phones
-            </h4>
-          </Link>
+      {!!filteredProducts.length && (
+        <PhonesList products={filteredProducts} />
+      )}
 
-          <p className="categories__count">
-            {`${products?.length} models`}
-          </p>
-        </div>
-
-        <div className="categories__item">
-          <Link to="/tablets">
-            <div className="categories__img-wrapper">
-              <img
-                className="categories__img categories__img-tablets"
-                src="img/category-tablets.png"
-                alt="Tablets"
-              />
-            </div>
-          </Link>
-
-          <Link to="/tablets" className="categories__subtitle-link">
-            <h4 className="categories__subtitle">
-              Tablets
-            </h4>
-          </Link>
-
-          <p className="categories__count">
-            0 models
-          </p>
-        </div>
-
-        <div className="categories__item">
-          <Link to="/accessories">
-            <div className="categories__img-wrapper">
-              <img
-                className="categories__img categories__img-accessories"
-                src="img/category-accessories.png"
-                alt="Tablets"
-              />
-            </div>
-          </Link>
-
-          <Link to="/accessories" className="categories__subtitle-link">
-            <h4 className="categories__subtitle">
-              Accessories
-            </h4>
-          </Link>
-
-          <p className="categories__count">
-            0 models
-          </p>
-        </div>
-      </div>
-    </>
+      {!filteredProducts.length && !!products.length && (
+        <p className="content__not-found">
+          Немає товарів у категорії "{title}"
+        </p>
+      )}
+    </div>
   );
 };
