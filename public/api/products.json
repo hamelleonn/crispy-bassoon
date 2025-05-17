@@ -9,7 +9,7 @@
     "size": "medium",
     "color": "white",
     "year": 2024,
-    "image": "/img/plants/vaz1.png"
+    "image": "/img/plants/orcid.jpg"
   },
   {
     "id": "2",
@@ -21,7 +21,7 @@
     "size": "large",
     "color": "green",
     "year": 2024,
-    "image": "/img/plants/vaz2.png"
+    "image": "/img/plants/fikys.jpg"
   },
   {
     "id": "3",
@@ -33,7 +33,7 @@
     "size": "large",
     "color": "green",
     "year": 2024,
-    "image": "/img/plants/vaz3.png"
+    "image": "/img/plants/monstera.png"
   },
   {
     "id": "4",
@@ -45,7 +45,7 @@
     "size": "medium",
     "color": "striped",
     "year": 2024,
-    "image": "/img/plants/vaz4.png"
+    "image": "/img/plants/sanseveria.png"
   },
   {
     "id": "5",
@@ -57,7 +57,7 @@
     "size": "medium",
     "color": "green",
     "year": 2024,
-    "image": "/img/plants/vaz5.jpg"
+    "image": "/img/plants/pahira.jpeg"
   },
   {
     "id": "6",
@@ -69,7 +69,7 @@
     "size": "small",
     "color": "white",
     "year": 2024,
-    "image": "/img/plants/vaz6.png"
+    "image": "/img/plants/spatufiliym.jpg"
   },
   {
     "id": "7",
@@ -81,7 +81,7 @@
     "size": "small",
     "color": "red",
     "year": 2024,
-    "image": "/img/plants/vaz7.png"
+    "image": "/img/plants/vaz8.jpg"
   },
   {
     "id": "8",
@@ -93,6 +93,6 @@
     "size": "mini",
     "color": "green",
     "year": 2024,
-    "image": "/img/plants/vaz8.png"
+    "image": "/img/plants/1373_1.jpeg"
   }
 ]
