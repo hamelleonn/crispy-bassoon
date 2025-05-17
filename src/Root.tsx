@@ -20,7 +20,7 @@ export const Root: React.FC = () => (
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="phones">
+          <Route path="plants">
             <Route index element={<Plants />} />
             <Route path=":productId?" element={<ProductDetailsPage />} />
           </Route>

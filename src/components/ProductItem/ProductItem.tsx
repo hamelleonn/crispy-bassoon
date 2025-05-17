@@ -49,11 +49,11 @@ export const ProductItem: React.FC<Props> = ({ product }) => {
 
       <div className="product-item__price-section">
         <h2 className="price">
-          {`$${price}`}
+          {`₴${price}`}
         </h2>
 
         <p className="price-discount">
-          {`$${fullPrice}`}
+          {`₴${fullPrice}`}
         </p>
       </div>
 
